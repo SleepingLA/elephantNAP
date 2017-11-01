@@ -1,0 +1,44 @@
+# Prepare an image with preinstalled packages:
+# Ansible will deploy Hadoop stack at the provisoning
+
+
+# STD NODE IMAGE
+
+  sudo apt-get update
+  sudo apt-get upgrade --yes
+  echo "deb http://www.apache.org/dist/cassandra/debian 311x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+  curl https://www.apache.org/dist/cassandra/KEYS | sudo apt-key add -
+  sudo apt-get update
+  sudo apt-get install  cassandra ntp --yess
+  sudo service cassandra status
+  sudo service cassandra stop
+  sudo systemctl disable cassandra
+
+  sudo apt-get install  clean
+  sudo apt-get install python python-matplotlib python-dev python-openstackclient python-pandas --yes
+  sudo apt-get install clean
+  sudo apt-get clean
+  sudo apt-get install openjdk-8-jdk --yes
+  sudo apt-get clean
+  sudo apt-get install python-sklearn-pandas libffi-dev libssl-dev libyaml-dev unzip --yes
+  sudo apt-get clean
+
+  sudo poweroff
+
+
+MASTER IMAGE = STDNODE IMAGE +
+
+
+ sudo apt install python-pip --yes
+ sudo pip install --upgrade pip
+ sudo apt-get install apache2-utils nginx --yes;
+ sudo apt-get install python-swiftclient --yes;
+ sudo apt-get clean;
+
+ sudo systemctl  stop nginx;
+ sudo systemctl  disable nginx;
+
+
+ sudo pip install ansible;
+ sudo pip install shade;
+ sudo pip install cassandra-driver;
