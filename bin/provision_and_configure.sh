@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #source ~/utils/source_env.sh
-cd $NAP/ansible
+cd $NAPDIR/ansible
 
 #config initile de ssh config
 #echo   "Host * ">~/.ssh/config
