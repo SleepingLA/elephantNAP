@@ -1,0 +1,33 @@
+---
+
+- include_vars: "{{ nodesfile }}"
+
+
+
+
+- name: Install ntp (CentOS)
+  when: is_centos
+  action: yum pkg={{item}} state=installed
+  with_items:
+    - ntp
+
+#  preinstalled?
+- name: Install (ubuntu)
+  when: is_ubuntu
+  action: apt name={{item}} state=present
+  with_items:
+    - ntp
+
+
+
+- name: Add the service scripts
+  template: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - {src: "ntp.conf.server", dest: "/etc/ntp.conf"}
+
+
+
+- name: restart service
+  when: is_ubuntu
+  shell : sudo service ntp restart
+

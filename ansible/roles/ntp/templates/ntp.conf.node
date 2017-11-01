@@ -1,0 +1,23 @@
+
+driftfile /var/lib/ntp/ntp.drift
+
+
+statistics loopstats peerstats clockstats
+filegen loopstats file loopstats type day enable
+filegen peerstats file peerstats type day enable
+filegen clockstats file clockstats type day enable
+
+
+
+
+
+restrict 127.0.0.1
+restrict ::1
+
+restrict source notrap nomodify noquery
+
+
+#server 192.168.0.14 prefer
+server {{ nodes[0]['ip'] }} prefer
+
+

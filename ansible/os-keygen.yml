@@ -1,0 +1,55 @@
+#!/usr/bin/env ansible-playbook
+---
+
+##############################################################################
+# Create Keypair and it locally
+##############################################################################
+
+
+- name: load vars
+  hosts: localhost
+  vars_files:
+    - vars/provision.vars
+
+
+  tasks:
+    - name: auth
+      # assume RC file has already been sourced
+      os_auth:
+
+    - name: create keypair
+      os_keypair:
+       state: present
+       name: "{{ key_name }}"
+      register: keypair
+
+    - name: Create local private key
+      local_action:
+       module: copy
+       content: "{{ keypair.key.private_key }}"
+       dest: "~/.ssh/{{ keypair.key.name }}"
+      ignore_errors: True
+
+    - name: Create local public key
+      local_action:
+       module: copy
+       content: "{{ keypair.key.public_key }}"
+       dest: "~/.ssh/{{ keypair.key.name }}.pub"
+      ignore_errors: True
+
+    - name: Create local private key staticname 
+      local_action:
+       module: copy
+       content: "{{ keypair.key.private_key }}"
+       dest: "./newkey.priv"
+      ignore_errors: True
+    - name: Create local public key staticname
+      local_action:
+       module: copy
+       content: "{{ keypair.key.public_key }}"
+       dest: "./newkey.pub"
+      ignore_errors: True
+
+    - name: Change permission
+#      local_action:
+      command:  chmod 600 "~/.ssh/{{ keypair.key.name }}"

@@ -1,0 +1,27 @@
+---
+
+
+- name: Install service on master node
+  hosts: master
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - roles/vars/openstack
+  roles:
+    - common
+    - ssh
+    - master
+
+- name: Install services on cluster nodes
+  hosts: slaves
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - roles/vars/openstack
+  roles:
+    - common
+    - ssh
+    - ntp
+

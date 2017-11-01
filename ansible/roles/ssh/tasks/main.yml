@@ -1,0 +1,80 @@
+---
+- include_vars: "{{ nodesfile }}"
+
+- name: create .ssh dir 
+  shell : mkdir -p /home/{{ cluster_user }}/.ssh/
+
+- name: Copy private key into place
+  template: src=cluster_rsa dest=/home/{{ cluster_user }}/.ssh/cluster_rsa owner={{ cluster_user }} group={{ cluster_group}} mode=0600
+
+- name: append authorized keys
+  authorized_key: user={{ cluster_user }} key="{{ lookup('file', 'roles/ssh/templates/cluster_rsa.pub') }}" exclusive=no
+
+- name: prepare known_hosts entries
+  shell: ssh-keyscan -t rsa {{ item.hostname }}
+  with_items: "{{ nodes }}"
+  register: keyscans
+
+- name: prepare known_hosts
+  lineinfile: 
+    dest=/home/{{ cluster_user }}/.ssh/known_hosts
+    create=yes
+    state=present
+    line="{{ item.stdout }}"
+    regexp="^{{ item.item.hostname }}"
+    owner={{ cluster_user }}
+    group={{ cluster_group }}
+  with_items: "{{ keyscans.results }}"
+
+- name: prepare ssh config
+  blockinfile: 
+    dest: /home/{{ cluster_user }}/.ssh/config
+    create: yes
+    state: present
+    block: |
+      Host * 
+      StrictHostKeyChecking no
+      UserKnownHostsFile=/dev/null
+
+- name: prepare ssh config hostname
+  blockinfile: 
+    dest: /home/{{ cluster_user }}/.ssh/config
+    create: yes
+    state: present
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.hostname }}"
+    block: |
+      Host {{ item.hostname }} 
+      StrictHostKeyChecking no
+      IdentityFile /home/{{ cluster_user }}/.ssh/cluster_rsa
+      UserKnownHostsFile=/dev/null
+  with_items: "{{ nodes }}"
+
+- name: prepare ssh config ip 0.0.0.0
+  blockinfile: 
+    dest: /home/{{ cluster_user }}/.ssh/config
+    create: yes
+    state: present
+    marker: "# {mark} ANSIBLE MANAGED BLOCK IP {{ item.ip }}"
+    block: |
+      Host {{ item.ip }}
+      StrictHostKeyChecking no
+      IdentityFile /home/{{ cluster_user }}/.ssh/cluster_rsa
+      UserKnownHostsFile=/dev/null
+  with_items: "{{ nodes }}"
+
+
+- name: prepare ssh config ip 0.0.0.0
+  blockinfile: 
+    dest: /home/{{ cluster_user }}/.ssh/config
+    create: yes
+    state: present
+    marker: "# {mark} ANSIBLE MANAGED BLOCK IP 0.0.0.0"
+    block: |
+      Host 0.0.0.0
+      StrictHostKeyChecking no
+      IdentityFile /home/{{ cluster_user }}/.ssh/cluster_rsa
+      UserKnownHostsFile=/dev/null
+
+- name: prepare known_hosts entries
+  shell: ssh-keyscan -t rsa 0.0.0.0
+  register: keyscan_0_0_0_0

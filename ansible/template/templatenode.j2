@@ -1,0 +1,11 @@
+---
+nodes:
+  - hostname: {{ hostvars[inventory_hostname]['ansible_hostname']  }}
+    ip: {{ hostvars[inventory_hostname]['ansible_all_ipv4_addresses'][0] }}
+{% for host in newnodes.results %}
+  - hostname: {{ host['server']['name'] }}
+    ip: {{ host['server']['private_v4'] }}
+{% endfor %}
+
+
+

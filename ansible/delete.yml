@@ -1,0 +1,31 @@
+#!/usr/bin/env ansible-playbook
+---
+
+- name: Destroy nodes
+  hosts: localhost
+  vars_files:
+    - vars/provision.vars
+
+
+
+
+  tasks:
+
+  - name: Connect to the IREQ Cloud
+    os_auth:
+
+  - name: detruire la cle
+    os_keypair:
+     state: absent
+     name: "{{ key_name }}"
+
+
+
+  - debug: var=groups['slaves']
+#  - debug: var=groups
+
+  - name: Destroy instances
+    os_server:
+      name: "{{ item }}"
+      state: absent
+    with_items: "{{ groups['slaves'] }}"
