@@ -3,10 +3,10 @@
 # source ~/CLuOS/bin/source_env.sh
 
 # modify path if needed
-CLUOSDIR=$HOME/CLuOS/
-export CLUOSDIR
+NAPDIR=$HOME/elephantNAP
+export NAPDIR
 
-BINDIR=${CLUOSDIR}/bin
+BINDIR=${NAPDIR}/bin
 export BINDIR
 export PATH=$PATH:${BINDIR}
 

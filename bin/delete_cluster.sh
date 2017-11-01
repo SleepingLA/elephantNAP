@@ -2,7 +2,7 @@
 
 #source $BINDIR/source_env.sh
 
-cd $CLUOSDIR/ansible
+cd $NAP/ansible
 
 ansible-playbook delete.yml -i hosts.prod
 
