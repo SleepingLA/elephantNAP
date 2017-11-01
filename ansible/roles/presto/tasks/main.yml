@@ -1,0 +1,37 @@
+---
+
+- include_vars: "{{ nodesfile }}"
+
+#- vars:
+- set_fact: presto_v="0.185"
+- set_fact: presto_port=8086
+
+- name: unpack presto
+  unarchive: src=roles/presto/files/presto-server-{{ presto_v }}.tar.gz dest=/usr/local owner={{ cluster_user}} group={{ cluster_group }}  creates=/usr/local/presto
+
+- command: mv /usr/local/presto-server-{{ presto_v }} /usr/local/presto creates=/usr/local/presto removes=/usr/local/presto-server-{{ presto_v }}
+
+# client presto a rendre executable
+- name: place presto-cli
+  copy: src=roles/presto/files/presto-cli-{{ presto_v }}-executable.jar dest=/usr/local/bin/presto-cli mode=755
+  
+# creation de repertoire
+
+- file: path=/usr/local/presto/etc/catalog state=directory owner={{ cluster_user}} group={{ cluster_group }}
+- file: path=/home/ubuntu/presto-data state=directory owner={{ cluster_user}} group={{ cluster_group }}
+
+- name: Get uuid
+  command: /usr/bin/uuid
+  register: my_uuid_output
+
+- set_fact:
+    my_uuid: "{{ my_uuid_output.stdout }}"
+
+- name: Add the service scripts
+  template: src={{ item.src }} dest={{ item.dest }} owner={{ cluster_user}} group={{ cluster_group }}
+  with_items:
+    - {src: "config.properties.j2", dest: "/usr/local/presto/etc/config.properties"}
+    - {src: "jvm.config.j2", dest: "/usr/local/presto/etc/jvm.config"}
+    - {src: "node.properties.j2", dest: "/usr/local/presto/etc/node.properties"}
+    - {src: "cataloghive.j2", dest: "/usr/local/presto/etc/catalog/hive.properties"}
+    - {src: "catalogcass.j2", dest: "/usr/local/presto/etc/catalog/cassandra.properties"}

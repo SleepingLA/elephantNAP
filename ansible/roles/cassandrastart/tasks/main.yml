@@ -1,0 +1,11 @@
+---
+
+- include_vars: "{{ nodesfile }}"
+
+#- vars:
+
+- name: start cassandra services
+  shell : systemctl start cassandra
+
+# ajouter le service dans systemctl pour redemarrage?
+

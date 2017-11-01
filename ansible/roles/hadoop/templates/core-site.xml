@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>/tmp/hadoop-{{ hadoop_user }}-tmpdir</value>
+    <description>A base for other temporary directories.</description>
+  </property>
+
+  <property>
+    <name>fs.default.name</name>
+    <value>hdfs://{{ nodes[0]['hostname'] }}:54310</value>
+    <description>The name of the default file system.  A URI whose
+    scheme and authority determine the FileSystem implementation.  The
+    uri's scheme determines the config property (fs.SCHEME.impl) naming
+    the FileSystem implementation class.  The uri's authority is used to
+    determine the host, port, etc. for a filesystem.</description>
+  </property>
+
+
+  <property>
+   <name>hadoop.proxyuser.hue.hosts</name>
+   <value>*</value>
+  </property>
+  <property>
+   <name>hadoop.proxyuser.hue.groups</name>
+   <value>*</value>
+  </property>
+
+
+
+   <property>
+    <name>fs.swift.impl</name>
+    <value>org.apache.hadoop.fs.swift.snative.SwiftNativeFileSystem</value>
+  </property>
+  <property>
+    <name>fs.swift.service.BLOB.auth.url</name>
+    <value>{{ keystone_auth }}/tokens</value>
+  </property>
+  <property>
+    <name>fs.swift.service.BLOB.auth.endpoint.prefix</name>
+    <value>endpoints</value>
+  </property>
+  <property>
+    <name>fs.swift.service.BLOB.http.port</name>
+    <value>8080</value>
+  </property>
+
+<!--
+  <property>
+    <name>fs.swift.service.BLOB.region</name>
+    <value>RegionOne</value>
+  </property>
+-->
+
+  <property>
+    <name>fs.swift.service.BLOB.public</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>fs.swift.service.BLOB.tenant</name>
+    <value>{{ project_tenant }}</value>
+  </property>
+
+
+  <property>
+    <name>fs.swift.service.BLOB.username</name>
+    <value>{{ user_tenant }}</value>
+  </property>
+  <property>
+    <name>fs.swift.service.BLOB.password</name>
+    <value>{{ user_password }}</value>
+  </property>
+
+
+</configuration>
+

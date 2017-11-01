@@ -1,0 +1,15 @@
+http-server.http.port={{ presto_port }}
+query.max-memory=30GB
+query.max-memory-per-node=1GB
+
+{% if presto_role == 'master' %}
+coordinator=true
+node-scheduler.include-coordinator=true
+discovery-server.enabled=true
+discovery.uri=http://{{ nodes[0]['hostname'] }}:{{ presto_port }}
+{% endif %}
+
+{% if presto_role == 'slave' %}
+coordinator=false
+discovery.uri=http://{{ nodes[0]['hostname'] }}:{{ presto_port }}
+{% endif %}

@@ -1,0 +1,20 @@
+---
+
+# spark env
+
+- name: Ensure all needed packages are installed (CentOS)
+  when: is_centos
+  action: yum pkg={{item}} state=installed
+  with_items:
+    - java-1.8.0-openjdk
+
+#- name: Ensure all needed packages are installed (ubuntu)
+#  when: is_ubuntu
+#  action: apt name={{item}} state=present
+#  with_items:
+#    - openjdk-8-jdk
+
+# sudo apt-get install openjdk-8-jdk
+#    - java-1.8.0-openjdk-devel
+### pour hadoop
+###- lineinfile: dest=/home/{{ hadoop_user }}/.bashrc regexp="^export JAVA_HOME" line="export JAVA_HOME=/opt/jdk1.8.0_66/"

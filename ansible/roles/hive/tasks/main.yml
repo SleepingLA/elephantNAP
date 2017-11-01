@@ -1,0 +1,25 @@
+---
+
+- include_vars: "{{ nodesfile }}"
+
+#- vars:
+- set_fact: hive_v="2.3.0"
+
+- name: unpack hive
+  unarchive: src=roles/hive/templates/apache-hive-{{ hive_v }}-bin.tar.gz dest=/usr/local owner={{ cluster_user}} group={{ cluster_group }} creates=/usr/local/hive
+
+- command: mv /usr/local/apache-hive-{{ hive_v }}-bin /usr/local/hive creates=/usr/local/hive removes=/usr/local/apache-hive-{{ hive_v }}-bin
+
+- lineinfile: dest=/home/{{ cluster_user }}/.bash_profile regexp="HIVE_HOME=" line="export HIVE_HOME=/usr/local/hive" state=present
+- lineinfile: dest=/home/{{ cluster_user }}/.bash_profile regexp="export PATH=\$HIVE" line="export PATH=$HIVE_HOME/bin:$PATH" state=present
+#- lineinfile: dest=/home/{{ hadoop_user }}/.bashrc regexp="PATH=$HBASE" line="export PATH=$HBASE_HOME/bin:$PATH"
+
+#
+#- file: path=/usr/local/zookeeper state=directory owner={{ hadoop_user}} group={{ hadoop_group }}
+#- file: path=/usr/local/hbase/logs state=directory owner={{ hadoop_user}} group={{ hadoop_group }}
+
+- name: Add the service scripts
+  template: src={{ item.src }} dest={{ item.dest }} owner={{ cluster_user}} group={{ cluster_group }}
+  with_items:
+    - {src: "hive-site.xml", dest: "/usr/local/spark/conf/hive-site.xml"}
+#    - {src: "hive-site.xml", dest: "/usr/local/hive/conf/hive-site.xml"}
