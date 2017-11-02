@@ -1,0 +1,20 @@
+#!/usr/bin/env ansible-playbook
+---
+
+- name: Remove tempkey
+  hosts: localhost
+  vars_files:
+    - vars/provision.vars
+
+
+
+
+  tasks:
+
+  - name: Connect to the IREQ Cloud
+    os_auth:
+
+  - name: delete the OpenStack key 
+    os_keypair:
+     state: absent
+     name: "{{ key_name }}"

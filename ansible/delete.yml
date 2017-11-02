@@ -14,13 +14,6 @@
   - name: Connect to the IREQ Cloud
     os_auth:
 
-  - name: detruire la cle
-    os_keypair:
-     state: absent
-     name: "{{ key_name }}"
-
-
-
   - debug: var=groups['slaves']
 #  - debug: var=groups
 
