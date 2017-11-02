@@ -33,9 +33,9 @@ echo configuration de zeppelin
 
 #################################
 echo configuration de nginx
-cd nginx
+pushd nginx
 bash commandes
-cd ..
+popd
 
 
 #################################
