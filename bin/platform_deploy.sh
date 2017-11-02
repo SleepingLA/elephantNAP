@@ -3,7 +3,7 @@
 echo Deploiement automatique avec option par defaut
 echo Assurez-vous davoir ajuste provision.vars
 echo
-cat $HOME/${NAPDIR}/ansible/vars/provision.vars
+cat ${NAPDIR}/ansible/vars/provision.vars
 echo
 echo
 

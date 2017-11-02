@@ -10,7 +10,7 @@
 
 #
 - name: unpack hadoop
-  unarchive: src=./roles/common/templates/hadoop-{{ hadoop_v }}.tar.gz dest=/usr/local owner={{ cluster_user}} group={{ cluster_group }} creates=/usr/local/hadoop
+  unarchive: src=./roles/hadoop/files/hadoop-{{ hadoop_v }}.tar.gz dest=/usr/local owner={{ cluster_user}} group={{ cluster_group }} creates=/usr/local/hadoop
 
 - command: mv /usr/local/hadoop-{{ hadoop_v }} /usr/local/hadoop creates=/usr/local/hadoop removes=/usr/local/hadoop-{{ hadoop_v }}
 
@@ -25,7 +25,7 @@
 #- lineinfile: dest=/home/{{ hadoop_user }}/.bashrc regexp="PATH=" line="export PATH=$PATH:$HADOOP_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin"
 
 - name: unpack spark
-  unarchive: src=./roles/common/templates/spark-{{ spark_v }}.tgz dest=/usr/local owner={{ cluster_user}} group={{ cluster_group }} creates=/usr/local/spark
+  unarchive: src=./roles/hadoop/files/spark-{{ spark_v }}.tgz dest=/usr/local owner={{ cluster_user}} group={{ cluster_group }} creates=/usr/local/spark
 - command: mv /usr/local/spark-{{ spark_v }} /usr/local/spark creates=/usr/local/spark removes=/usr/local/spark-{{ spark_v }}
 #- name: ssh
 #  StrictHostKeyChecking no
