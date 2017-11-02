@@ -1,0 +1,37 @@
+---
+
+- include_vars: "{{ nodesfile }}"
+
+#- vars:
+- set_fact: hbase_v="1.2.6"
+
+- name: unpack hbase
+  unarchive: src=roles/hbase/templates/hbase-{{ hbase_v }}-bin.tar.gz dest=/usr/local owner={{ hadoop_user}} group={{ hadoop_group }} creates=/usr/local/hbase
+
+- command: mv /usr/local/hbase-{{ hbase_v }} /usr/local/hbase creates=/usr/local/hbase removes=/usr/local/hbase-{{ hbase_v }}
+
+- lineinfile: dest=/home/{{ hadoop_user }}/.bashrc regexp="HBASE_HOME=" line="export HBASE_HOME=/usr/local/hbase" state=present
+- lineinfile: dest=/home/{{ hadoop_user }}/.bashrc regexp="export PATH=\$HBASE" line="export PATH=$HBASE_HOME/bin:$PATH" state=present
+#- lineinfile: dest=/home/{{ hadoop_user }}/.bashrc regexp="PATH=$HBASE" line="export PATH=$HBASE_HOME/bin:$PATH"
+
+#
+- file: path=/usr/local/zookeeper state=directory owner={{ hadoop_user}} group={{ hadoop_group }}
+- file: path=/usr/local/hbase/logs state=directory owner={{ hadoop_user}} group={{ hadoop_group }}
+
+- name: Add the service scripts
+  template: src={{ item.src }} dest={{ item.dest }} owner={{ hadoop_user}} group={{ hadoop_group }}
+  with_items:
+    - {src: "hbase-site.xml", dest: "/usr/local/hbase/conf/hbase-site.xml"}
+
+
+- name: Copy regionservers into place
+  template: src=regionservers dest=/usr/local/hbase/conf/regionservers owner={{ hadoop_user }} group={{ hadoop_group}}
+
+- name: set  JAVA HOME
+  when: is_ubuntu
+  lineinfile: dest=/usr/local/hbase/conf/hbase-env.sh regexp="^export JAVA_HOME" line="export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64"
+
+- name: set  JAVA HOME
+  when: is_centos
+  lineinfile: dest=/usr/local/hbase/conf/hbase-env.sh regexp="^export JAVA_HOME" line="export JAVA_HOME=/usr/lib/jvm/jre"
+

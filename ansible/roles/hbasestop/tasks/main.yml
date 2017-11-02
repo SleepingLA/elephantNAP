@@ -1,0 +1,4 @@
+---
+
+- name: stop hbase services
+  shell : /usr/local/hbase/bin/stop-hbase.sh
