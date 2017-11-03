@@ -1,8 +1,8 @@
 #! /bin/bash
-source ~/utils/source_env.sh
+source $NAPDIR/bin/source_env.sh
 
 
-cd $HOME/${NAPDIR}/ansible
+cd ${NAPDIR}/ansible
 
 if [ -e /usr/local/hbase ] ; then
         echo

@@ -2,7 +2,7 @@
 #source ~/utils/source_env.sh
 
 
-cd $HOME/${NAPDIR}/ansible
+cd ${NAPDIR}/ansible
 
 if [ -z "$UNATTENDED" ] ; then
  echo Editer le configure_presto playbook au besoin

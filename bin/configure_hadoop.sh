@@ -1,5 +1,5 @@
 #! /bin/bash
-source ~/utils/source_env.sh
+source ${NAPDIR}/bin/source_env.sh
 
 
 cd ${NAPDIR}/ansible

@@ -1,7 +1,7 @@
 #! /bin/bash
 #source ~/utils/source_env.sh
 
-cd $HOME/${NAPDIR}/ansible
+cd ${NAPDIR}/ansible
 
 echo Appel a ansible-playbook -i hosts.prod stop_presto.yml
 ansible-playbook -i hosts.prod stop_presto.yml

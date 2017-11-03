@@ -2,7 +2,7 @@
 #source ~/utils/source_env.sh
 
 
-cd $HOME/${NAPDIR}/ansible
+cd ${NAPDIR}/ansible
 
 varfile=vars/cassandra.vars
 if [ ! -e $varfile ] ; then

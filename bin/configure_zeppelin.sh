@@ -1,7 +1,7 @@
 #! /bin/bash
 #source ~/utils/source_env.sh
 
-cd $HOME/${NAPDIR}/ansible
+cd ${NAPDIR}/ansible
 
 if [ -e /usr/local//zeppelin ] ; then
  	echo
