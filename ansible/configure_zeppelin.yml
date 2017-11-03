@@ -2,7 +2,7 @@
 
 
 - name: Install zep on frontend node
-  hosts: hadoop-master
+  hosts: master
   remote_user: hadoop
   sudo: no
   vars_files:

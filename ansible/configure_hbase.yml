@@ -3,7 +3,7 @@
 
 
 - name: Install hbase on slave
-  hosts: hadoop-data
+  hosts: slaves
   remote_user: hadoop
   sudo: yes
   vars_files:
@@ -14,7 +14,7 @@
     - hbase
 
 - name: Install hbase frontend node
-  hosts: hadoop-master
+  hosts: master
   remote_user: hadoop
   sudo: yes
   vars_files:

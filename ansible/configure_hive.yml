@@ -3,13 +3,13 @@
 
 
 - name: Install hive on frontend node
-  hosts: hadoop-master
+  hosts: cluster-master
   remote_user: hadoop
   sudo: yes
   vars_files:
     - roles/vars/os
-    - vars/hive.vars
     - roles/vars/openstack
+    - vars/hive.vars
   roles:
     - hive
 

@@ -3,7 +3,7 @@
 
 
 - name: Install presto on master node
-  hosts: hadoop-master
+  hosts: master
   remote_user: hadoop
   sudo: yes
   vars_files:
@@ -17,7 +17,7 @@
 
 
 - name: Install presto on master node
-  hosts: hadoop-data
+  hosts: slaves
   remote_user: hadoop
   sudo: yes
   vars_files:

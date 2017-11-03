@@ -3,7 +3,7 @@
 
 
 - name: Install cassandra on slave
-  hosts: hadoop-data,hadoop-master
+  hosts: master,slaves
   remote_user: hadoop
   sudo: yes
   vars_files:
