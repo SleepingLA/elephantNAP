@@ -1,0 +1,14 @@
+---
+
+
+
+- name: Start presto service on cluster
+  hosts: hadoop-data,hadoop-master
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - roles/common/vars/main.yml
+  roles:
+    - prestostart
+

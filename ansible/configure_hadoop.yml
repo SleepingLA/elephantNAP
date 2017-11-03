@@ -1,0 +1,33 @@
+---
+
+
+- name: Install platform bin on master node
+  hosts: master
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - roles/vars/openstack
+  roles:
+    - openjdk18
+
+- name: Install platform bin on cluster nodes
+  hosts: slaves
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - roles/vars/openstack
+  roles:
+    - openjdk18
+
+- name: configure main hadoop
+  hosts: master
+  remote_user: hadoop
+  sudo: no
+  vars_files:
+    - roles/vars/os
+    - roles/vars/openstack
+  roles:
+    - hadoopinit
+

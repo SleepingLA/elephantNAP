@@ -1,0 +1,16 @@
+---
+
+
+
+# fait par le master apres les autres?
+- name: Start services
+  hosts: hadoop-master
+  remote_user: hadoop
+  sudo: no
+  vars_files:
+    - roles/vars/os
+    - vars/zep.vars
+    - roles/common/vars/main.yml
+  roles:
+    - zeppelinstart
+

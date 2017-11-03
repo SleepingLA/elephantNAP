@@ -1,0 +1,31 @@
+---
+
+
+
+- name: Install presto on master node
+  hosts: hadoop-master
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - roles/common/vars/main.yml
+  roles:
+    - presto
+  vars:
+   presto_role: master
+   presto_data_path: /home/ubuntu/presto-data
+
+
+- name: Install presto on master node
+  hosts: hadoop-data
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - roles/common/vars/main.yml
+  roles:
+    - presto
+  vars:
+   presto_role: slave
+   presto_data_path: /home/ubuntu/presto-data
+

@@ -1,0 +1,38 @@
+---
+
+
+
+- name: Install hbase on slave
+  hosts: hadoop-data
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - vars/hbase.vars
+    - roles/common/vars/main.yml
+  roles:
+    - hbase
+
+- name: Install hbase frontend node
+  hosts: hadoop-master
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - vars/hbase.vars
+    - roles/common/vars/main.yml
+  roles:
+    - hbase
+
+
+# fait par le master apres les autres?
+#- name: Start services
+#  hosts: hadoop-master
+#  remote_user: hadoop
+#  sudo: no
+#  vars_files:
+#    - roles/vars/os
+#
+#  roles:
+#    - hbasestart
+

@@ -1,0 +1,27 @@
+---
+
+
+
+- name: Install hive on frontend node
+  hosts: hadoop-master
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - vars/hive.vars
+    - roles/common/vars/main.yml
+  roles:
+    - hive
+
+
+# fait par le master apres les autres?
+#- name: Start services
+#  hosts: hadoop-master
+#  remote_user: hadoop
+#  sudo: no
+#  vars_files:
+#    - roles/vars/os
+#
+#  roles:
+#    - hivestart
+

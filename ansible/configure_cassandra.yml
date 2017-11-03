@@ -1,0 +1,26 @@
+---
+
+
+
+- name: Install cassandra on slave
+  hosts: hadoop-data,hadoop-master
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - vars/cassandra.vars
+    - roles/common/vars/main.yml
+  roles:
+    - cassandra
+
+#- name: Install cassandra frontend node
+#  hosts: hadoop-master
+#  remote_user: hadoop
+#  sudo: yes
+#  vars_files:
+#    - roles/vars/os
+#    - cassandra.vars
+#    - roles/common/vars/main.yml
+#  roles:
+#    - cassandra
+
