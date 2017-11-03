@@ -8,16 +8,9 @@
   with_items:
     - java-1.8.0-openjdk
 
-- name: update packages def (ubuntu)
-  when: is_ubuntu
-  apt:
-    update_cache: yes 
-
-
 - name: Ensure all needed packages are installed (ubuntu)
   when: is_ubuntu
   action: apt name={{item}} state=present
   with_items:
     - openjdk-8-jdk
-    - python
 

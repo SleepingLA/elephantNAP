@@ -8,3 +8,19 @@
   #lineinfile: dest=/etc/hosts regexp='{{ item.ip }}' line="{{ item.ip }} {{ item.hostname }}" state=present # apres un redeploy ladrrese change pas le nom
 
 - lineinfile: dest=/etc/hosts regexp='127.0.1.1' state=absent
+
+
+# Update Instance OS
+- name: update packages def (ubuntu)
+  when: is_ubuntu
+  apt:
+    update_cache: yes
+
+
+- name: Ensure all needed packages are installed (ubuntu)
+  when: is_ubuntu
+  action: apt name={{item}} state=present
+  with_items:
+    - openjdk-8-jdk
+    - python
+
