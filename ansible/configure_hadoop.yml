@@ -10,6 +10,7 @@
     - roles/vars/openstack
   roles:
     - openjdk18
+    - hadoop
 
 - name: Install platform bin on cluster nodes
   hosts: slaves
@@ -20,6 +21,7 @@
     - roles/vars/openstack
   roles:
     - openjdk18
+    - hadoop
 
 - name: configure main hadoop
   hosts: master
