@@ -1,7 +1,7 @@
 ---
 
 
-- name: Install service on master node
+- name: Install platform bin on master node
   hosts: master
   remote_user: hadoop
   sudo: yes
@@ -13,7 +13,7 @@
     - ssh
     - master
 
-- name: Install services on cluster nodes
+- name: Install platform bin on cluster nodes
   hosts: slaves
   remote_user: hadoop
   sudo: yes
@@ -24,4 +24,14 @@
     - common
     - ssh
     - ntp
+
+- name: configure main hadoop
+  hosts: master
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - roles/vars/openstack
+  roles:
+    - hadoopinit
 

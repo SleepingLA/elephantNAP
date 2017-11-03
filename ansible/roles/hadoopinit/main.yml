@@ -1,0 +1,27 @@
+---
+
+- name: format namenode
+  command : /usr/local/hadoop/bin/hadoop namenode -format -force
+- name: start hdfs services
+  shell : /usr/local/hadoop/sbin/start-dfs.sh
+- name: create home for centos
+  when: is_centos
+  shell : /usr/local/hadoop/bin/hdfs dfs -mkdir -p /user/centos
+- name: create home for ubuntu
+  when: is_ubuntu
+  shell : /usr/local/hadoop/bin/hdfs dfs -mkdir -p /user/ubuntu
+#YARN
+- name: create tmp/hadoop-yarn
+  shell : /usr/local/hadoop/bin/hdfs dfs -mkdir -p /tmp/hadoop-yarn/staging
+- name: accept multiuser for /tmp/hadoop-yarn/staging
+  shell : /usr/local/hadoop/bin/hdfs dfs -chmod -R 775 /tmp/
+#- name: start yarn services
+#  shell : /usr/local/hadoop/sbin/start-yarn.sh
+# SPARK
+#- name: start spark services
+#  shell : /usr/local/spark/sbin/start-all.sh
+- name: create tmpdir for spark
+  shell : /usr/local/hadoop/bin/hdfs dfs -mkdir -p /tmp/spark-events 
+# STOP HDFS after setup
+- name: stop hdfs services
+  shell : /usr/local/hadoop/sbin/stop-dfs.sh
