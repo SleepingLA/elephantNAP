@@ -3,6 +3,12 @@
 # init metastore
 
 if [ ! -e $HOME/hive-metastore ] ; then
+
+ if [ -e /usr/local/hive/bin/schematool ] ; then
+
+ # TODO
+ #test working HDFS
+ 
  mkdir $HOME/hive-metastore
  cd $HOME/hive-metastore
  source $HOME/.bashrc
@@ -18,6 +24,8 @@ if [ ! -e $HOME/hive-metastore ] ; then
 
  # demarrer les services
  # ${NAPDIR}/bin/start_hive.sh
+  fi
+
 else
  echo impossible dinitialiser veuillez reinitiliser  ou seulement demarrer le service
  echo hiveclean ou hivestart
