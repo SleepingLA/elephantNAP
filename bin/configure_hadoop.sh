@@ -6,7 +6,7 @@ cd ${NAPDIR}/ansible
 
 if [ -e /usr/local/hadoop ] ; then
         echo
-        echo "/usr/local/hbase alrady exist"
+        echo "/usr/local/hadoop already exist"
         echo "cleaning required"
         echo
         read
