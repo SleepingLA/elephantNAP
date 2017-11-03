@@ -4,13 +4,13 @@
 - name: Install zep on frontend node
   hosts: master
   remote_user: hadoop
-  sudo: no
+  sudo: yes
   vars_files:
     - roles/vars/os
     - vars/zep.vars
     - roles/vars/openstack
   roles:
-#    - common1
     - zeppelin
+    - nginx
 
 

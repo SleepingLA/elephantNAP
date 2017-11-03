@@ -31,7 +31,7 @@
          state: absent
 
 - name: start nginx
-  shell : systemctl start nginx
+  shell : systemctl restart nginx
 
 # after a boot?
 #sudo systemctl daemon-reload
