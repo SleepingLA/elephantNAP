@@ -6,9 +6,9 @@
 ###- set_fact: zep_v="0.8.0-SNAPSHOT"
 
 - name: unpack zeppelin
-  unarchive: src=./roles/zeppelin/files/zeppelin-{{ zep_v }}.tgz dest={{ zep_root }}/{{ cluster_user}} owner={{ cluster_user}} group={{ cluster_group }} creates={{ zep_root }}//{{ cluster_user}}/zeppelin
+  unarchive: src=./roles/zeppelin/files/zeppelin-{{ zep_v }}.tgz dest={{ zep_root }} owner={{ cluster_user}} group={{ cluster_group }} creates={{ zep_root }}/zeppelin
 
-- command: mv /home/{{ cluster_user}}/zeppelin-{{ zep_v }} {{ zep_root }}//{{ cluster_user}}/zeppelin creates={{ zep_root }}//{{ cluster_user}}/zeppelin removes={{ zep_root }}//{{ cluster_user}}/zeppelin-{{ zep_v }}
+- command: mv {{ zep_root }}/zeppelin-{{ zep_v }} {{ zep_root }}/zeppelin creates={{ zep_root }}/zeppelin removes={{ zep_root }}/zeppelin-{{ zep_v }}
 
 
 
