@@ -25,11 +25,9 @@ fi
 
 echo Appel a ansible-playbook -i hosts.prod configure_hive.yml
 ansible-playbook -i hosts.prod configure_hive.yml
-echo
-echo
-echo Hive est installe
-echo
-echo "Veuillez quitter le serveur et rebranchez-vous pour charger env"
-echo "Initialisation de hive avec hiveinit.sh (manuel)"
+
+# 
+${NAPDIR}/bin/hiveinit.sh
+
 
 

@@ -5,7 +5,7 @@
 # Verfication si  bien installe
 
 if [ ! -e /usr/local/hadoop/sbin/start-dfs.sh ] ; then
-	echo Veuillez dabord deployer la plateforme avec provision_plateforme
+	echo check platform.conf and launch platform_deploy.sh
 	exit 1
 fi
 
