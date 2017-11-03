@@ -7,10 +7,10 @@ cd ${NAPDIR}/ansible
 if [ -e /usr/local/hadoop ] ; then
         echo
         echo "/usr/local/hadoop already exist"
-        echo "cleaning required"
+        echo "HDFS formatting will be done"
         echo
         read
-        exit 1
+        #exit 1
 fi
 
 echo ansible-playbook -i hosts.prod configure_hadoop.yml
