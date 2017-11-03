@@ -1,0 +1,40 @@
+---
+
+- include_vars: "{{ nodesfile }}"
+
+- name: Ensure all needed packages are installed (ubuntu)
+  when: is_ubuntu
+  action: apt name={{item}} state=present
+  with_items:
+    - nginx
+
+- name: copy nginx
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: 'my-spark', dest: '/etc/nginx/sites-available' }
+    - { src: 'my-hue', dest: '/etc/nginx/sites-available' }
+    - { src: 'my-zeppelin', dest: '/etc/nginx/sites-available' }
+
+- name: Link enabled
+  file:
+    src: /etc/nginx/sites-available/{{ item.path }}
+    dest:  /etc/nginx/sites-enabled/{{ item.dest }}
+    state: link
+  with_items:
+   - { path: 'my-spark', dest: 'my-spark' }
+   - { path: 'my-zeppelin', dest: 'my-zeppelin' }
+   - { path: 'my-hue', dest: 'my-hue' }
+
+-name: remove default nginx config
+  file:
+	 src: /etc/nginx/sites-enabled/default
+         state: absent
+
+- name: start nginx
+  shell : systemctl start nginx
+
+# after a boot?
+#sudo systemctl daemon-reload
+#sudo systemctl enable my_service.service
+#sudo systemctl start my_service.service
+

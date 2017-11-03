@@ -24,3 +24,4 @@
 ##- name: start zepelin daemon
 ##  shell : /home//{{ hadoop_user}}/zeppelin/bin/zeppelin-daemon.sh start
 
+
