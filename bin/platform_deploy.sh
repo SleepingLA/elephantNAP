@@ -1,10 +1,5 @@
 #! /bin/bash
 
-read_conf(){
-
-
-}
-
 echo Deploiement automatique avec option platform.conf
 echo Assurez-vous davoir ajuste provision.vars
 echo
