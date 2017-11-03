@@ -17,9 +17,9 @@ if [ ! -e $HOME/hive-metastore ] ; then
   hdfs dfs -ls /user/hive
  # demarrer les services
 
-  $HOME/${NAPDIR}/bin/start_hive.sh
+  ${NAPDIR}/bin/start_hive.sh
 else
- echo impossible dinitialiser veuillez reinitiliser  ou seulement partir le service
+ echo impossible dinitialiser veuillez reinitiliser  ou seulement demarrer le service
  echo hiveclean ou hivestart
 fi
 

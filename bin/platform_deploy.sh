@@ -14,22 +14,28 @@ read
 
 pushd ${NAPDIR}
 #################################
-echo configuration du cluster
-./bin/provision_and_configure.sh
+echo configuration de base du cluster
+${NAPDIR}/bin/provision_and_configure.sh
 
+#################################
+echo configuration de hadoop
+${NAPDIR}/bin/configure_hadoop.sh
+
+
+# LOAD HADOOP ENV
 source ~/.bash_profile
 
 #################################
 echo configuration de hive
 
-./bin/configure_hive.sh
-./bin/hiveinit.sh
-./bin/start_hive.sh
+${NAPDIR}/bin/configure_hive.sh
+${NAPDIR}/bin/hiveinit.sh
+${NAPDIR}/bin/start_hive.sh
 
 #################################
 echo configuration de zeppelin
-./bin/configure_zeppelin.sh
-./bin/start_zeppelin.sh
+${NAPDIR}/bin/configure_zeppelin.sh
+${NAPDIR}/bin/start_zeppelin.sh
 
 #################################
 echo configuration de nginx
@@ -40,6 +46,6 @@ popd
 
 #################################
 echo configuration de cassandra
-./bin/configure_cassandra.sh
-./bin/start_cassandra.sh
+${NAPDIR}/bin/configure_cassandra.sh
+${NAPDIR}/bin/start_cassandra.sh
 popd

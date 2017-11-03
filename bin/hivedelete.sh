@@ -1,5 +1,5 @@
 #cleanhive
-$HOME/${NAPDIR}/bin/hiveclean.sh
+${NAPDIR}/bin/hiveclean.sh
 
 # effacer binaire
 

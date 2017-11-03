@@ -1,6 +1,6 @@
 
 #arret des services
-$HOME/${NAPDIR}/bin/stop_hive.sh
+${NAPDIR}/bin/stop_hive.sh
 
 # effacer hdfs warehouse
 
