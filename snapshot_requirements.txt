@@ -45,3 +45,6 @@ fi
  sudo pip install ansible;
  sudo pip install shade;
  sudo pip install cassandra-driver;
+ # reupdate crypto and friends
+ sudo pip uninstall pyOpenSSL;
+ sudo pip install pyOpenSSL;
