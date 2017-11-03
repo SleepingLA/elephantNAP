@@ -8,7 +8,7 @@
   vars_files:
     - roles/vars/os
     - vars/zep.vars
-    - roles/common/vars/main.yml
+    - roles/vars/openstack
   roles:
 #    - common1
     - zeppelin

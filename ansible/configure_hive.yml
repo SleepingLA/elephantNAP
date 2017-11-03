@@ -9,7 +9,7 @@
   vars_files:
     - roles/vars/os
     - vars/hive.vars
-    - roles/common/vars/main.yml
+    - roles/vars/openstack
   roles:
     - hive
 

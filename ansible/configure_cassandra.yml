@@ -8,8 +8,9 @@
   sudo: yes
   vars_files:
     - roles/vars/os
+    - roles/vars/openstack
     - vars/cassandra.vars
-    - roles/common/vars/main.yml
+
   roles:
     - cassandra
 
@@ -19,8 +20,8 @@
 #  sudo: yes
 #  vars_files:
 #    - roles/vars/os
+#    - roles/vars/openstack
 #    - cassandra.vars
-#    - roles/common/vars/main.yml
 #  roles:
 #    - cassandra
 

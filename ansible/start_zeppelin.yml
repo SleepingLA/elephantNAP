@@ -9,8 +9,8 @@
   sudo: no
   vars_files:
     - roles/vars/os
+    - roles/vars/openstack
     - vars/zep.vars
-    - roles/common/vars/main.yml
   roles:
     - zeppelinstart
 

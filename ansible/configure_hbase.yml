@@ -8,8 +8,8 @@
   sudo: yes
   vars_files:
     - roles/vars/os
+    - roles/vars/openstack
     - vars/hbase.vars
-    - roles/common/vars/main.yml
   roles:
     - hbase
 
@@ -19,8 +19,8 @@
   sudo: yes
   vars_files:
     - roles/vars/os
+    - roles/vars/openstack
     - vars/hbase.vars
-    - roles/common/vars/main.yml
   roles:
     - hbase
 

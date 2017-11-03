@@ -8,7 +8,7 @@
   sudo: yes
   vars_files:
     - roles/vars/os
-    - roles/common/vars/main.yml
+    - roles/vars/openstack
   roles:
     - prestostart
 
