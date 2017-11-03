@@ -22,6 +22,7 @@
 #  shell : /usr/local/spark/sbin/start-all.sh
 - name: create tmpdir for spark
   shell : /usr/local/hadoop/bin/hdfs dfs -mkdir -p /tmp/spark-events 
-# STOP HDFS after setup
-- name: stop hdfs services
-  shell : /usr/local/hadoop/sbin/stop-dfs.sh
+
+# STOP HDFS after setup no hive
+#- name: stop hdfs services
+#  shell : /usr/local/hadoop/sbin/stop-dfs.sh

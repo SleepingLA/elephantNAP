@@ -20,7 +20,7 @@ fi
 # hive
 
 if [ -e ${HOME}/hive-metastore ] ; then
-	hivestart.sh
+	${NAPDIR}/bin/hivestart.sh
 fi
 
 #zeppelin

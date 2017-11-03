@@ -8,16 +8,16 @@ if [ ! -e $HOME/hive-metastore ] ; then
  source $HOME/.bashrc
  /usr/local/hive/bin/schematool -dbType derby  -initSchema
 
-# crer hdfs warehouse
+# create hdfs warehouse
 
  echo config de hdfs
   hdfs dfs -mkdir -p  /user/hive/warehouse
   hdfs dfs -ls /user/hive
   hdfs dfs -chmod g+w /user/hive/warehouse
   hdfs dfs -ls /user/hive
- # demarrer les services
 
-  ${NAPDIR}/bin/start_hive.sh
+ # demarrer les services
+ # ${NAPDIR}/bin/start_hive.sh
 else
  echo impossible dinitialiser veuillez reinitiliser  ou seulement demarrer le service
  echo hiveclean ou hivestart
