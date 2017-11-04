@@ -13,20 +13,20 @@ stop_service(){
 #zeppelin
 if [ -e /usr/local/zeppelin ] ; then
 	#${HOME}/zeppelin/bin/zeppelin-daemon.sh stop
-        cd ~/${NAPDIR}/
+        cd ${NAPDIR}/
         ./bin/stop_zeppelin.sh
 fi
 
 # presto
 if [ -e /usr/local/presto ] ; then
-        cd ~/${NAPDIR}/
+        cd ${NAPDIR}/
         ./bin/stop_presto.sh
 fi
 
 
 # hive
 if [ -e ${HOME}/hive-metastore ] ; then
-	hivestop.sh
+        ./bin/stop_hive.sh
 fi
 
 
@@ -37,7 +37,7 @@ fi
 
 if [ -e /usr/local/hbase ] ; then
         echo "repartir Hbase a la main au besoin"
-        cd ~/${NAPDIR}/
+        cd ${NAPDIR}/
         ./bin/stop_hbase.sh
 fi
 
@@ -46,12 +46,12 @@ fi
 /usr/local/spark/sbin/stop-all.sh
 
 # hadoop
-/usr/local/hadoop/sbin/stop-all.sh
+/usr/local/hadoop/sbin/stop-dfs.sh
 
 # cassandra
 temp=$(ls /var/lib/cassandra | wc -l)
 if [ $temp -gt 0 ] ; then
-        cd ~/${NAPDIR}/
+        cd ${NAPDIR}/
         ./bin/stop_cassandra.sh
 fi
 
