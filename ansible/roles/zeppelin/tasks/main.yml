@@ -18,8 +18,8 @@
 - name: Add the service scripts
   template: src={{ item.src }} dest={{ item.dest }} owner={{ cluster_user}} group={{ cluster_group }}
   with_items:
-    - {src: "zeppelin-site.xml.template", dest: "{{ zep_root }}//{{ cluster_user}}/zeppelin/conf/zeppelin-site.xml" }
-    - {src: "zeppelin-env.sh.template", dest: "{{ zep_root }}//{{ cluster_user}}/zeppelin/conf/zeppelin-env.sh" }
+    - {src: "zeppelin-site.xml.template", dest: "{{ zep_root }}/zeppelin/conf/zeppelin-site.xml" }
+    - {src: "zeppelin-env.sh.template", dest: "{{ zep_root }}/zeppelin/conf/zeppelin-env.sh" }
 
 ##- name: start zepelin daemon
 ##  shell : /home//{{ hadoop_user}}/zeppelin/bin/zeppelin-daemon.sh start
