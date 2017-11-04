@@ -1,51 +1,18 @@
-#! bin/bash
+#! /bin/bash
 
-# config  des services configures pourrait se trouver dans deploystart...
+source ~/.bash_profile
+#
+# read conf
+# change platform.conf to launch subset of  initially configured services
+file=${NAPDIR}/platform.conf
+liste=$(cat $file | grep -v -e '#')
 
-# Verfication si  bien installe
+for service in $liste
+do
+ echo
+ echo Starting $service 
+ echo ${NAPDIR}/bin/start_${service}.sh
+ ${NAPDIR}/bin/start_${service}.sh
 
-if [ ! -e /usr/local/hadoop/sbin/start-dfs.sh ] ; then
-	echo check platform.conf and launch platform_deploy.sh
-	exit 1
-fi
+done
 
-#services de base
-# hadoop
-/usr/local/hadoop/sbin/start-dfs.sh
-#/usr/local/hadoop/sbin/start-all.sh
-
-#spark
-/usr/local/spark/sbin/start-all.sh
-
-# hive
-
-if [ -e ${HOME}/hive-metastore ] ; then
-	${NAPDIR}/bin/hivestart.sh
-fi
-
-#zeppelin
-if [ -e /usr/local/zeppelin ] ; then
-	#${HOME}/zeppelin/bin/zeppelin-daemon.sh start
-	./bin/start_zeppelin.sh
-fi
-
-# HBASE?
-
-if [ -e /usr/local/hbase ] ; then
-	echo "repartir Hbase a la main au besoin"
-	cd ~/${NAPDIR}/
-	./bin/start_hbase.sh
-fi
-
-# cassandra
-if [ -e /var/lib/cassandra ] ; then # toujours present
-	cd ~/${NAPDIR}/
-	./bin/start_cassandra.sh
-fi
-
-
-# TODO
-
-
-# Hue livy
-# repartir a la main
