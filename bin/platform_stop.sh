@@ -1,6 +1,8 @@
 #! /bin/bash
 
-# config  des services configures pourrait se trouver dans deploystart...
+# platform stop try to stop everything, 
+# later you can select to restart different service with start
+# and with a modified platform.conf
 
 
 
@@ -15,14 +17,14 @@ if [ -e /usr/local/zeppelin ] ; then
         ./bin/stop_zeppelin.sh
 fi
 
-# hive
-
-if [ -e /usr/local/presto ] ;
+# presto
+if [ -e /usr/local/presto ] ; then
         cd ~/${NAPDIR}/
         ./bin/stop_presto.sh
 fi
 
 
+# hive
 if [ -e ${HOME}/hive-metastore ] ; then
 	hivestop.sh
 fi

@@ -3,6 +3,7 @@
 echo DELETING BIN DIRECTORY? PRESS ENTER TO CONTINUE
 read
 
+cd ${NAPDIR}/ansible
 echo ansible-playbook -i hosts.prod clean_cluster.yml
 ansible-playbook -i hosts.prod clean_cluster.yml
 echo
