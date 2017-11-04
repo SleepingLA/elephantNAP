@@ -3,7 +3,7 @@
 
 
 - name: Start cassandra service
-  hosts: hadoop-data,hadoop-master
+  hosts: slaves,master
   remote_user: hadoop
   sudo: yes
   vars_files:
