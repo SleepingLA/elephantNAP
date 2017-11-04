@@ -1,7 +1,6 @@
---
+---
 
-
-- name: Ansible delete multiple file example
+- name: delete multiple dir
   file:
     path: "{{ item }}"
     state: absent
