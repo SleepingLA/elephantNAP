@@ -34,12 +34,3 @@ do
 
 done
 
-exit
-
-#################################
-# EXTRA
-#################################
-echo configuration de nginx
-pushd nginx
-bash commandes
-popd
