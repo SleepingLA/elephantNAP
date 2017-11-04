@@ -3,6 +3,11 @@
 echo DELETING BIN DIRECTORY? PRESS ENTER TO CONTINUE
 read
 
+echo ansible-playbook -i hosts.prod clean_cluster.yml
+ansible-playbook -i hosts.prod clean_cluster.yml
+echo
+
+
 rm -fr $HOME/hadoop-data
 rm -fr $HOME/hive-metastore 
 rm -fr $HOME/zeppelin
