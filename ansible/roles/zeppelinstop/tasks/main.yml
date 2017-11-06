@@ -1,8 +1,0 @@
----
-
-- include_vars: "{{ nodesfile }}"
-###- set_fact: zep_v="0.7.2-bin-all"
-
-- name: stop zepelin daemon
-  shell : "{{ zep_root }}/{{ cluster_user}}/zeppelin/bin/zeppelin-daemon.sh stop"
-

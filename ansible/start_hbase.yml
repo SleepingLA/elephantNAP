@@ -7,6 +7,8 @@
   hosts: hadoop-master
   remote_user: hadoop
   sudo: no
+  vars:
+    - cmd: "{{ cmd }}"
   vars_files:
     - roles/vars/os
 

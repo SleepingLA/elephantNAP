@@ -4,8 +4,8 @@
 
 #- vars:
 
-- name: start presto services
-  shell : /usr/local/presto/bin/launcher.py start
+- name: startstop presto services
+  shell : /usr/local/presto/bin/launcher.py {{ cmd }}
 
 # ajouter le service dans systemctl pour redemarrage?
 

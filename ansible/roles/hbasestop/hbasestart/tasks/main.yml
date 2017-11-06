@@ -1,4 +1,0 @@
----
-
-- name: start hbase services
-  shell : /usr/local/hbase/bin/start-hbase.sh

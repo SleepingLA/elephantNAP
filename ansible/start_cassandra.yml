@@ -6,6 +6,8 @@
   hosts: slaves,master
   remote_user: hadoop
   sudo: yes
+  vars:
+    - cmd: "{{ cmd }}"
   vars_files:
     - roles/vars/os
     - roles/vars/openstack

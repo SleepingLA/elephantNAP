@@ -1,4 +1,4 @@
 ---
 
-- name: start hbase services
-  shell : /usr/local/hbase/bin/start-hbase.sh
+- name: startstop hbase services
+  shell : /usr/local/hbase/bin/{{ cmd }}-hbase.sh

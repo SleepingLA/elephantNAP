@@ -4,8 +4,8 @@
 
 #- vars:
 
-- name: start cassandra services
-  shell : systemctl start cassandra
+- name: startstop cassandra services
+  shell : systemctl {{ cmd }} cassandra
 
 # ajouter le service dans systemctl pour redemarrage?
 
