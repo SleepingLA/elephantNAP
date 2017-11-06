@@ -20,6 +20,13 @@
 - file: path=/usr/local/presto/etc/catalog state=directory owner={{ cluster_user}} group={{ cluster_group }}
 - file: path=/home/ubuntu/presto-data state=directory owner={{ cluster_user}} group={{ cluster_group }}
 
+- name: Ensure uuid is installed (ubuntu)
+  when: is_ubuntu
+  action: apt name={{item}} state=present
+  with_items:
+    - uuid
+
+
 - name: Get uuid
   command: /usr/bin/uuid
   register: my_uuid_output
