@@ -8,7 +8,7 @@
   remote_user: hadoop
   sudo: no
   vars:
-    - cmd: "{{ cmd }}"
+    - cmd: "{{ commande }}"
   vars_files:
     - roles/vars/os
 

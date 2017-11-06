@@ -7,7 +7,7 @@
   remote_user: hadoop
   sudo: yes
   vars:
-    - cmd: "{{ cmd }}"
+    - cmd: "{{ commande }}"
   vars_files:
     - roles/vars/os
     - roles/vars/openstack

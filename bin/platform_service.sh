@@ -6,8 +6,9 @@ startstop_service() {
     cmd=$1
     name=$2
     cd ${NAPDIR}/ansible
-    echo Appel a ansible-playbook -i hosts.prod start_cassandra.yml
-    ansible-playbook -i hosts.prod start_$name.yml --extra-vars "action=$cmd"
+    #echo Appel a ansible-playbook -i hosts.prod start_cassandra.yml
+    echo ansible-playbook -i hosts.prod start_$name.yml --extra-vars "commande=$cmd"
+    ansible-playbook -i hosts.prod start_$name.yml --extra-vars "commande=$cmd"
 }
 
 startstop_hadoop() {
