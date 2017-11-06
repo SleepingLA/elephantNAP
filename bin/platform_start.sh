@@ -11,8 +11,9 @@ for service in $liste
 do
  echo
  echo Starting $service 
- echo ${NAPDIR}/bin/start_${service}.sh
- ${NAPDIR}/bin/start_${service}.sh
+ #echo ${NAPDIR}/bin/start_${service}.sh
+ echo ${NAPDIR}/bin/platform_service.sh start ${service}
+ ${NAPDIR}/bin/platform_service.sh start ${service}
 
 done
 
