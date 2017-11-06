@@ -13,7 +13,11 @@
     - /home/{{ cluster_user }}/hadoop-data
     - /home/{{ cluster_user }}/hive-metastore
     - /home/{{ cluster_user }}/zeppelin
-
+    - /var/lib/cassandra/commitlog  
+    - /var/lib/cassandra/data
+    - /var/lib/cassandra/hints 
+    - /var/lib/cassandra/saved_caches
+ 
 
 # cassandra ?
 # rm -fr
