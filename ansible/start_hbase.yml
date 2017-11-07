@@ -4,7 +4,7 @@
 
 # fait par le master apres les autres?
 - name: Start services
-  hosts: hadoop-master
+  hosts: master
   remote_user: hadoop
   sudo: no
   vars:
