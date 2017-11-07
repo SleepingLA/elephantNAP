@@ -1,0 +1,17 @@
+---
+
+- include_vars: "{{ nodesfile }}"
+
+#- vars:
+- set_fact: ignite_v="2.3.0"
+
+- name: unpack presto
+  unarchive: src=roles/ignite/files/apache-ignite-fabric-{{ ignite_v }}.zip dest=/usr/local owner={{ cluster_user}} group={{ cluster_group }}  creates=/usr/local/ignite
+
+- command: mv /usr/local/apache-ignite-fabric-{{ ignite_v }}-bin /usr/local/ignite creates=/usr/local/ignite removes=/usr/local/apache-ignite-fabric-{{ ignite_v }}-bin
+
+- name: Add the service scripts
+  template: src={{ item.src }} dest={{ item.dest }} owner={{ cluster_user}} group={{ cluster_group }}
+  with_items:
+    - {src: "default-config.xml.j2", dest: "/usr/local/ignite/config/default-config.xml"}
+

@@ -1,0 +1,18 @@
+---
+
+- include_vars: "{{ nodesfile }}"
+
+#- vars:
+
+- name: startstop presto services
+  shell : /usr/local/presto/bin/launcher.py {{ cmd }}
+
+# ajouter le service dans systemctl pour redemarrage?
+
+- name: "start ignite server"
+  command: /usr/local/ignite/bin/ignite.sh
+  when: {{ cmd }} == "start"
+
+- name: "kill ignite server"
+  command: pkill ignite
+  when: {{ cmd }} == "stop"

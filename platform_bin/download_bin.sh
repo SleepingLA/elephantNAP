@@ -14,6 +14,7 @@ if false; then
  wget http://apache.mirror.vexxhost.com/hbase/1.2.6/hbase-1.2.6-bin.tar.gz
  wget http://apache.mirror.vexxhost.com/zeppelin/zeppelin-0.7.3/zeppelin-0.7.3-bin-all.tgz
 
+ wget http://apache.mirror.vexxhost.com/ignite/2.3.0/apache-ignite-fabric-2.3.0-bin.zip
 
  wget https://repo1.maven.org/maven2/com/facebook/presto/presto-server/0.187/presto-server-0.187.tar.gz
  wget https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/0.187/presto-cli-0.187-executable.jar
@@ -32,4 +33,8 @@ mv zeppelin-0.7.3-bin-all.tgz ${NAPDIR}/ansible/roles/zeppelin/files
 mkdir ${NAPDIR}/ansible/roles/presto/files
 mv presto-server-0.185.tar.gz ${NAPDIR}/ansible/roles/presto/files
 mv presto-cli-0.185-executable.jar ${NAPDIR}/ansible/roles/presto/files
+
+mkdir ${NAPDIR}/ansible/roles/ignite/files
+mv apache-ignite-fabric-2.3.0-bin.zip ${NAPDIR}/ansible/roles/ignite/files
+
 

@@ -1,0 +1,29 @@
+---
+
+
+
+- name: Install ignite on master node
+  hosts: master
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - roles/vars/openstack
+  roles:
+    - ignite
+  vars:
+   presto_role: master ###
+   presto_data_path: /home/ubuntu/presto-data ###
+
+
+- name: Install ignite on slaves node
+  hosts: slaves
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - roles/vars/openstack
+  roles:
+    - ignite
+  vars:
+
