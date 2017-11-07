@@ -34,3 +34,5 @@ do
 
 done
 
+
+${NAPDIR}/bin/platform_start.sh

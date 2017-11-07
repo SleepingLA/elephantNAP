@@ -11,7 +11,7 @@ liste=$(tac $file | grep -v -e '#')
 for service in $liste
 do
  echo
- echo Starting $service 
+ echo Stopping $service 
  #echo ${NAPDIR}/bin/start_${service}.sh
  echo ${NAPDIR}/bin/platform_service.sh stop ${service}
  ${NAPDIR}/bin/platform_service.sh stop ${service}
