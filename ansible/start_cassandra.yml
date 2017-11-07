@@ -2,7 +2,7 @@
 
 
 
-- name: Start cassandra service
+- name: Manage cassandra service
   hosts: slaves,master
   remote_user: hadoop
   sudo: yes

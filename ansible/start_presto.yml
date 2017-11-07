@@ -2,7 +2,7 @@
 
 
 
-- name: Start presto service on cluster
+- name: Manage presto service on cluster
   hosts: slaves,master
   remote_user: hadoop
   sudo: yes
