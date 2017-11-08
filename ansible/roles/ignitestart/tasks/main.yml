@@ -4,15 +4,20 @@
 
 #- vars:
 
-- name: startstop presto services
-  shell : /usr/local/presto/bin/launcher.py {{ cmd }}
+#- name: startstop presto services
+#  shell : /usr/local/presto/bin/launcher.py {{ cmd }}
 
 # ajouter le service dans systemctl pour redemarrage?
 
+#- name: "start ignite server"
+#  command: /usr/local/ignite/bin/ignite.sh
+#  when: {{ cmd }} == "start"
+
 - name: "start ignite server"
-  command: /usr/local/ignite/bin/ignite.sh
-  when: {{ cmd }} == "start"
+  shell: /usr/local/ignite/bin/ignite.sh > /tmp/ignite.log &
+  when:  cmd == "start"
 
 - name: "kill ignite server"
   command: pkill ignite
-  when: {{ cmd }} == "stop"
+  when:  cmd == "stop"
+
