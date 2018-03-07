@@ -22,6 +22,11 @@ if [ ! -e $HOME/hive-metastore ] ; then
   hdfs dfs -chmod g+w /user/hive/warehouse
   hdfs dfs -ls /user/hive
 
+  
+  hdfs dfs -mkdir -p  /tmp/hive
+  hdfs dfs -chmod 777 /tmp/hive
+
+
  # demarrer les services
  # ${NAPDIR}/bin/start_hive.sh
   fi
