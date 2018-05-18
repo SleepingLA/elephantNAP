@@ -1,0 +1,12 @@
+---
+
+- include_vars: "{{ nodesfile }}"
+
+
+- name: install TF 
+  pip:
+   name: tensorflow
+
+- name: install TFonSpark
+  pip:
+   name: tensorflowonspark

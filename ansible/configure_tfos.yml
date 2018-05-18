@@ -1,0 +1,15 @@
+---
+
+
+
+- name: Install tensorflow on slave
+  hosts: master,slaves
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - roles/vars/openstack
+
+  roles:
+    - tfos
+
