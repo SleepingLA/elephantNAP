@@ -25,7 +25,7 @@
   sudo apt-get install python python-dev python-pip --yes;
   sudo apt-get clean;
 
-  sudo -H pip install --upgrade pip --yes;
+  sudo -H pip install --upgrade pip
   sudo -H pip install --no-cache-dir  pandas
   sudo -H pip install --no-cache-dir  sklearn-pandas
   sudo -H pip install --no-cache-dir  matplotlib
