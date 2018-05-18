@@ -4,8 +4,9 @@
 
 
 # STD NODE IMAGE
-if true; then
-if false; then
+
+#if true; then
+#if false; then
 
   sudo apt-get update;
   sudo apt-get upgrade --yes;
@@ -15,36 +16,40 @@ if false; then
   sudo apt-get install openjdk-8-jdk --yes;
   sudo apt-get clean;
   sudo apt-get install  cassandra ntp --yes;
-  sudo service cassandra status;
+  #sudo service cassandra status;
   sudo service cassandra stop;
   sudo systemctl disable cassandra;
-
-  sudo apt-get clean;
-  sudo apt-get install python python-matplotlib python-dev python-openstackclient python-pandas --yes;
-  sudo apt-get install clean;
-  sudo apt-get clean;
-  sudo apt-get install python-sklearn-pandas libffi-dev libssl-dev libyaml-dev unzip --yes;
   sudo apt-get clean;
 
-  sudo poweroff;
-fi
+  sudo apt-get install libffi-dev libssl-dev libyaml-dev unzip --yes;
+  sudo apt-get install python python-dev python-pip --yes;
+  sudo apt-get clean;
+
+  sudo -H pip install --upgrade pip --yes;
+  sudo -H pip install --no-cache-dir  pandas
+  sudo -H pip install --no-cache-dir  sklearn-pandas
+  sudo -H pip install --no-cache-dir  matplotlib
+
+  sudo -H pip install --no-cache-dir  python-openstackclient
+  sudo -H pip install --no-cache-dir  python-swiftclient
+
+
+#  sudo poweroff;
+#fi
 
 #MASTER IMAGE = STDNODE IMAGE +
 
-
- sudo apt install python-pip --yes;
- sudo pip install --upgrade pip;
  sudo apt-get install apache2-utils nginx --yes;
- sudo apt-get install python-swiftclient --yes;
  sudo apt-get clean;
 
  sudo systemctl  stop nginx;
  sudo systemctl  disable nginx;
 
+ sudo -H pip install --no-cache-dir ansible;
+ sudo -H pip install --no-cache-dir shade;
+ sudo -H pip install --no-cache-dir cassandra-driver;
 
- sudo pip install ansible;
- sudo pip install shade;
- sudo pip install cassandra-driver;
+
  # reupdate crypto and friends
- sudo pip uninstall pyOpenSSL;
- sudo pip install pyOpenSSL;
+ #sudo pip uninstall pyOpenSSL;
+ #sudo pip install pyOpenSSL;
