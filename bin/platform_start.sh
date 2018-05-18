@@ -5,7 +5,7 @@ source ~/.bash_profile
 # read conf
 # change platform.conf to launch subset of  initially configured services
 file=${NAPDIR}/platform.conf
-liste=$(cat $file | grep -v -e '#')
+liste=$(cat $file | grep -v -e '#' | cut -d " " -f1)
 
 for service in $liste
 do

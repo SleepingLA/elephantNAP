@@ -6,7 +6,7 @@ source ~/.bash_profile
 # change platform.conf to launch subset of  initially configured services
 file=${NAPDIR}/platform.conf
 # inverse order for stopping services
-liste=$(tac $file | grep -v -e '#')
+liste=$(tac $file | grep -v -e '#' | cut -d " " -f1)
 
 for service in $liste
 do

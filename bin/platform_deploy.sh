@@ -12,27 +12,15 @@ export UNATTENDED=1
 
 read
 
-#
-# read conf
-file=${NAPDIR}/platform.conf
-liste=$(cat $file | grep -v -e '#')
+
 
 pushd ${NAPDIR}
 #################################
 echo configuration de base du cluster
 ${NAPDIR}/bin/provision_and_configure.sh
 
+# individual service platform.conf
+${NAPDIR}/bin/configure_service.sh
 
-for service in $liste
-do
- echo
- echo pushing $service config
- echo ${NAPDIR}/bin/configure_${service}.sh
- ${NAPDIR}/bin/configure_${service}.sh
- # LOAD HADOOP ENV 
- source ~/.bash_profile
-
-done
-
-
+# start 
 ${NAPDIR}/bin/platform_start.sh
