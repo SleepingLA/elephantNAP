@@ -15,6 +15,7 @@ Steps:
 
 
 Accelerated deploy:
-  - prepare a cloud image with pre-installed package
+  - prepare a cloud image with pre-installed packages
     a slave node image after step 1
     a master node image after step 2
+  - Modify provision.var with IDs of slave snapshots
