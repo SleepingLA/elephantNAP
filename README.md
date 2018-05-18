@@ -8,6 +8,7 @@ Requirements Steps:
   - Install packages requirements (step1_install_requirements.sh)
   - Download and put tar/zip in Ansible roles dir  (step2_download_tar.sh)
   - Add eNAP path to .bashrc [step3]  (source ~/elephantNAP/bin/source_env.sh)
+
 Provisioning Steps:
   - Modify provision.var
   - Select apps in platform.conf
@@ -17,6 +18,6 @@ Provisioning Steps:
 
 Accelerated deploy:
   - prepare cloud images (snapshots) with pre-installed packages
-  --  a slave node image after step 1
-  --  a master node image after step 3
+	  - a slave node image after step 1
+	  - a master node image after step 3
   - Modify provision.var with IDs of slave snapshots
