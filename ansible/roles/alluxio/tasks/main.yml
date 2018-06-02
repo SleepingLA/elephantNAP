@@ -1,0 +1,57 @@
+---
+
+- include_vars: "{{ nodesfile }}"
+
+- group: name={{ cluster_group}} state=present
+- user: name={{ cluster_user }} comment="Hadoop" group={{ cluster_group}} shell=/bin/bash createhome=yes skeleton=/etc/skel
+#- vars:
+- set_fact: alluxio_v="1.7.1-hadoop-2.7"
+#- set_fact: hadoop_v="2.7.3" spark_v="2.0.2-bin-hadoop2.7"
+
+#
+- name: unpack alluxio
+  unarchive: src=./roles/alluxio/files/alluxio-{{ alluxio_v }}.tar.gz dest=/usr/local owner={{ cluster_user}} group={{ cluster_group }} creates=/usr/local/alluxio
+
+- command: mv /usr/local/alluxio-{{ alluxio_v }} /usr/local/alluxio creates=/usr/local/alluxio removes=/usr/local/alluxio-{{ alluxio_v }}
+
+
+- lineinfile: dest=/home/{{ cluster_user }}/.bash_profile regexp="ALLUXIO_HOME=" line="export ALLUXIO_HOME=/usr/local/alluxio"
+- lineinfile: dest=/home/{{ cluster_user }}/.bash_profile regexp="SPARK_HOME=" line="export SPARK_HOME=/usr/local/spark"
+- lineinfile: dest=/home/{{ cluster_user }}/.bash_profile regexp="export PATH=\$ALLUXIO" line="export PATH=$ALLUXIO_HOME/bin:$PATH" state=present
+
+
+
+- name: Add the service scripts
+  template: src={{ item.src }} dest={{ item.dest }} owner={{ cluster_user}} group={{ cluster_group }}
+  with_items:
+    - {src: "core-site.xml", dest: "/usr/local/hadoop/etc/hadoop/core-site.xml"}
+    - {src: "hdfs-site.xml", dest: "/usr/local/hadoop/etc/hadoop/hdfs-site.xml"}
+    - {src: "yarn-site.xml", dest: "/usr/local/hadoop/etc/hadoop/yarn-site.xml"}
+    - {src: "mapred-site.xml", dest: "/usr/local/hadoop/etc/hadoop/mapred-site.xml"}
+    - {src: "spark-defaults.conf", dest: "/usr/local/spark/conf/spark-defaults.conf"}
+    - {src: "core-site.xml", dest: "/usr/local/spark/conf/core-site.xml"}
+
+
+- name: Copy workers into place
+  template: src=workers dest=/usr/local/alluxio/conf/workers owner={{ cluster_user }} group={{ cluster_group}}
+
+
+# add classpath in /usr/local/spark/conf/spark-defaults.conf
+
+spark.driver.extraClassPath /home/ubuntu/alluxio-1.7.1-hadoop-2.7/client/alluxio-1.7.1-client.jar
+spark.executor.extraClassPath /home/ubuntu/alluxio-1.7.1-hadoop-2.7/client/alluxio-1.7.1-client.jar
+
+
+# verifier si le mettre dans .bashrc est ok
+#- name: copy spark-env dans /etc/profile.d
+#  template: src=spark.sh dest=/etc/profile.d/spark.sh
+
+
+# meme plus sur que ca soit requis a verifier
+- command: cp  /usr/local/hadoop/share/hadoop/tools/lib/hadoop-openstack-{{ hadoop_v }}.jar /usr/local/hadoop/share/hadoop/common/lib
+
+# pour spark cest requis sinon on doit le mentionner a la ligne de commande
+#- command: cp  /usr/local/hadoop/share/hadoop/tools/lib/hadoop-openstack-{{ hadoop_v }}.jar /usr/local/spark/jars
+#- command: cp  /usr/local/hadoop/share/hadoop/tools/lib/aws-java-sdk-1.7.4.jar  /usr/local/hadoop/share/hadoop/tools/lib/hadoop-aws--{{ hadoop_v }}.jar /usr/local/hadoop/share/hadoop/common/lib
+#- shell: cp  /usr/local/hadoop/share/hadoop/tools/lib/aws-java-sdk-*.jar  /usr/local/hadoop/share/hadoop/tools/lib/hadoop-aws-*.jar /usr/local/hadoop/share/hadoop/common/lib
+

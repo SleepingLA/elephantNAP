@@ -43,4 +43,6 @@ mv presto-cli-0.201-executable.jar ${NAPDIR}/ansible/roles/presto/files
 mkdir ${NAPDIR}/ansible/roles/ignite/files
 mv apache-ignite-fabric-2.3.0-bin.zip ${NAPDIR}/ansible/roles/ignite/files
 
-
+# download manually
+mkdir -p ${NAPDIR}/ansible/roles/alluxio/files
+mv alluxio-1.7.1-hadoop-2.7-bin.tar.gz ${NAPDIR}/ansible/roles/alluxio/files

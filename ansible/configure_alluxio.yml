@@ -1,0 +1,38 @@
+---
+
+
+
+- name: Install alluxion on slave
+  hosts: slaves,master
+  remote_user: hadoop
+  sudo: yes
+  vars_files:
+    - roles/vars/os
+    - roles/vars/openstack
+    - vars/alluxio.vars
+  roles:
+    - alluxio
+
+#- name: Install hbase frontend node
+#  hosts: master
+#  remote_user: hadoop
+#  sudo: yes
+#  vars_files:
+#    - roles/vars/os
+#    - roles/vars/openstack
+#    - vars/hbase.vars
+#  roles:
+#    - hbase
+
+
+# fait par le master apres les autres?
+#- name: Start services
+#  hosts: hadoop-master
+#  remote_user: hadoop
+#  sudo: no
+#  vars_files:
+#    - roles/vars/os
+#
+#  roles:
+#    - hbasestart
+
