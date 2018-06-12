@@ -7,5 +7,9 @@ nodes:
     ip: {{ host['server']['private_v4'] }}
 {% endfor %}
 
-
+slaves:
+{% for host in newnodes.results %}
+  - hostname: {{ host['server']['name'] }}
+    ip: {{ host['server']['private_v4'] }}
+{% endfor %}
 
