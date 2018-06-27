@@ -5,7 +5,7 @@
 - group: name={{ cluster_group}} state=present
 - user: name={{ cluster_user }} comment="Hadoop" group={{ cluster_group}} shell=/bin/bash createhome=yes skeleton=/etc/skel
 #- vars:
-- set_fact: hadoop_v="2.7.6" spark_v="2.3.0-bin-hadoop2.7"
+- set_fact: hadoop_v="2.7.6" spark_v="2.3.1-bin-hadoop2.7"
 #- set_fact: hadoop_v="2.7.3" spark_v="2.0.2-bin-hadoop2.7"
 
 #

@@ -1,7 +1,7 @@
 ---
 
 - include_vars: "{{ nodesfile }}"
-- set_fact: zep_v="0.7.3-bin-all"
+- set_fact: zep_v="0.8.0-bin-all"
 #- set_fact: zep_root="/home"
 ###- set_fact: zep_v="0.8.0-SNAPSHOT"
 
