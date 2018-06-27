@@ -17,11 +17,11 @@ echo
 echo "Please enter your OpenStack Authentification Endpoint: "
 echo
 echo "Example: "
+echo "http://172.32.0.3:5000/v2.0"
 echo "http://10.7.240.6:5000/v2.0"
 echo "http://?.?.?.?:5000/v2.0"
 echo
 read -r OS_INPUT
-#export OS_AUTH_URL=http://osk-identity-1-1.hc.hydro.qc.ca:5000/v2.0
 export OS_AUTH_URL=$OS_INPUT
 
 

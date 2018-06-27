@@ -6,8 +6,8 @@ Configure Head node to provision slave nodes with Hadoop-Spark tools
 Requirements Steps:
   - Clone elephanNAP project
   - Install packages requirements (step1_install_requirements.sh)
+  - Add eNAP path to .bashrc [step1.5]  (source ~/elephantNAP/bin/source_env.sh)
   - Download and put tar/zip in Ansible roles dir  (step2_download_tar.sh)
-  - Add eNAP path to .bashrc [step3]  (source ~/elephantNAP/bin/source_env.sh)
 
 Provisioning Steps:
   - Modify provision.var
