@@ -13,6 +13,8 @@
 
 
   tasks:
+    - set_fact: key_name="{{ key_name_prefix }}-{{ cluster_id }}"
+
     - name: auth
       # assume RC file has already been sourced
       os_auth:

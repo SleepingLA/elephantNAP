@@ -1,5 +1,9 @@
 #! /bin/bash
 
+# cluster unique (ou presque)
+random=$(( $RANDOM % 100 ))
+grep -q  "cluster_id:" ${NAPDIR}/ansible/vars/provision.vars || echo "cluster_id: "$random >> ${NAPDIR}/ansible/vars/provision.vars
+
 echo Deploiement automatique avec option platform.conf
 echo Assurez-vous davoir ajuste provision.vars
 echo

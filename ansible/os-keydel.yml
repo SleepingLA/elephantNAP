@@ -11,6 +11,8 @@
 
   tasks:
 
+  - set_fact: key_name="{{ key_name_prefix }}-{{ cluster_id }}"
+
   - name: Connect to the IREQ Cloud
     os_auth:
 
