@@ -33,6 +33,8 @@
 - name: start nginx
   shell : systemctl restart nginx
 
+- name: add nginx to boot
+  shell : systemctl enable nginx.service
 # after a boot?
 #sudo systemctl daemon-reload
 #sudo systemctl enable my_service.service
