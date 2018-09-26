@@ -4,15 +4,22 @@
 random=$(( $RANDOM % 100 ))
 grep -q  "cluster_id:" ${NAPDIR}/ansible/vars/provision.vars || echo "cluster_id: "$random >> ${NAPDIR}/ansible/vars/provision.vars
 
-echo Deploiement automatique avec option platform.conf
-echo Assurez-vous davoir ajuste provision.vars
+
+echo
+echo
+echo "Review of Openstack provisioning parameters: (provision.vars)"
 echo
 cat ${NAPDIR}/ansible/vars/provision.vars
 echo
 echo
-
+echo "Review of selected services/tools (platform.conf)"
+echo
+cat platform.conf | grep -v "#"
+echo
 
 export UNATTENDED=1
+
+echo Press any key to continue...
 
 read
 
