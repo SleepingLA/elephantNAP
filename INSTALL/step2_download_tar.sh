@@ -1,5 +1,8 @@
 #~ /bin/bash
 
+# DEFINE MANUALLY  NAPDIR
+# DEFAULT
+export NAPDIR=/home/ubuntu/elephantNAP
 
 chmod u+w .
 
