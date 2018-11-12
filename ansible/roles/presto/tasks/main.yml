@@ -3,7 +3,7 @@
 - include_vars: "{{ nodesfile }}"
 
 #- vars:
-- set_fact: presto_v="0.211"
+- set_fact: presto_v="0.213"
 - set_fact: presto_port=8086
 
 - name: unpack presto

@@ -3,7 +3,7 @@
 - include_vars: "{{ nodesfile }}"
 
 #- vars:
-- set_fact: hive_v="2.3.3"
+- set_fact: hive_v="2.3.4"
 
 - name: unpack hive
   unarchive: src=roles/hive/templates/apache-hive-{{ hive_v }}-bin.tar.gz dest=/usr/local owner={{ cluster_user}} group={{ cluster_group }} creates=/usr/local/hive
