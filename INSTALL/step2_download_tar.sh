@@ -51,7 +51,7 @@ mkdir ${NAPDIR}/ansible/roles/ignite/files
 mv apache-ignite-fabric-2.3.0-bin.zip ${NAPDIR}/ansible/roles/ignite/files
 
 mkdir ${NAPDIR}/ansible/roles/sparkling/files
-mv sparkling-water-2.4.5.zip ${NAPDIR}/ansible/roles/sparkling/files
+mv sparkling-water-2.4.5.zip ${NAPDIR}/ansible/roles/sparklingH2O/files
 
 
 # download manually
