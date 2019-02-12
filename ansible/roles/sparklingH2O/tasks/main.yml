@@ -1,0 +1,17 @@
+---
+
+- include_vars: "{{ nodesfile }}"
+- set_fact: h2o_v="2.4.5"
+- set_fact: h2o_root="/home"
+###- set_fact: zep_v="0.8.0-SNAPSHOT"
+
+- name: unpack sparling
+  unarchive: src=./roles/sparklingH2O/files/sparkling-water-{{ h2o_v }}.zip dest={{ h2o_root }} owner={{ cluster_user}} group={{ cluster_group }} creates={{ h2o_root }}/sparkling-water
+
+- command: mv {{ h2o_root }}/sparkling-water-{{ h2o_v }} {{ h2o_root }}/sparkling-water creates={{ h2o_root }}/sparkling-water removes={{ h2o_root }}/sparkling-water-{{ h2o_v }}
+
+
+
+# installation de pip install h2o_pysparkling_2.4
+
+
