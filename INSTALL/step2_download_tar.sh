@@ -23,6 +23,8 @@ if false; then
  wget --no-check-certificate https://repo1.maven.org/maven2/com/facebook/presto/presto-server/0.213/presto-server-0.213.tar.gz
  wget --no-check-certificate  https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/0.213/presto-cli-0.213-executable.jar
 
+
+ wget --no-check-certificate https://s3.amazonaws.com/h2o-release/sparkling-water/rel-2.4/5/sparkling-water-2.4.5.zip
  exit
 fi
 
@@ -38,13 +40,19 @@ mv hbase-2.0.0-bin.tar.gz ${NAPDIR}/ansible/roles/hbase/templates/
 mv apache-hive-2.3.4-bin.tar.gz ${NAPDIR}/ansible/roles/hive/templates/
 
 mkdir ${NAPDIR}/ansible/roles/zeppelin/files
-mv zeppelin-0.8.0-bin-all.tgz ${NAPDIR}/ansible/roles/zeppelin/files
+#mv zeppelin-0.8.0-bin-all.tgz ${NAPDIR}/ansible/roles/zeppelin/files
+mv zeppelin-0.8.1-bin-netinst.tgz ${NAPDIR}/ansible/roles/zeppelin/files
+
 mkdir ${NAPDIR}/ansible/roles/presto/files
 mv presto-server-0.213.tar.gz ${NAPDIR}/ansible/roles/presto/files
 mv presto-cli-0.213-executable.jar ${NAPDIR}/ansible/roles/presto/files
 
 mkdir ${NAPDIR}/ansible/roles/ignite/files
 mv apache-ignite-fabric-2.3.0-bin.zip ${NAPDIR}/ansible/roles/ignite/files
+
+mkdir ${NAPDIR}/ansible/roles/sparkling/files
+mv sparkling-water-2.4.5.zip ${NAPDIR}/ansible/roles/sparkling/files
+
 
 # download manually
 mkdir -p ${NAPDIR}/ansible/roles/alluxio/files
